@@ -11,3 +11,19 @@ class ConvBlock(nn.Modules):
 
    def forward(self,x):
     return self.conv(x) 
+class FCN8s(nn.Module):
+  def __init__(self, n_class, pretrained = True):
+    super(FCN8S, self).__init__()
+    #VGG16 Backbone 
+
+    self.Conv1 = ConvBlock(3, 64, 2)
+    self.Pool1 = nn.MaxPool2d(kernel_size = 2, stride = 2)  
+    self.Conv2 = ConvBlock(64, 128, 2)
+    self.Pool2 = nn.MaxPool2d(kernel_size = 2, stride = 2)
+    self.Conv3 = ConvBlock(128, 256, 3)
+    self.Pool3 = nn.Maxpool2d(kernel_size = 2, stride = 2)
+    self.Conv4 = ConvBlock(256, 512, 3)
+    self.Pool4 = nn.Maxpool2d(kernel_size = 2, stride = 2)
+    self.Conv5 = ConvBlock(512, 512, 3)
+    self.Pool5 = nn.Maxpool2d(kernel_size = 2, stride = 2)
+    
