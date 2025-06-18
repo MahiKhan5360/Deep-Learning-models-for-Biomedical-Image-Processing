@@ -1,0 +1,13 @@
+import torch
+import torch.nn as nn
+
+class ConvBlock(nn.Modules):
+  def __init__(self, in_chaneels, out_channels, num_layers):
+    super(ConvBlock, self).__init__()
+    layers =  [nn.Conv2d(in_channels, out_channels, kernel_size = 3 , padding = 1, bias = False), nn.BatchNorm2d(out_channels), nn.ReLU(inplace= True)]
+    for _ in range (num_layers-1):
+      Layers += [nn.Conv2d(out_channels, out_channels, Kernel_size = 3, padding =1 , bias = False), nn.BatchNorm2d(out_channels), nn.RelU(inplace = True)]
+    self.conv = nn. Sequential(*layers)  
+
+   def forward(self,x):
+    return self.conv(x) 
